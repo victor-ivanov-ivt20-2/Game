@@ -1,3 +1,4 @@
+let e_health = 50
 let health = 100;
 let money = 0;
 let strength = 10;
@@ -10,6 +11,7 @@ Number(localStorage.getItem("money")) >= 0) {
 }
 document.getElementById("health").innerHTML = "Здоровье = " + health;
 document.getElementById("money").innerHTML = "Монеты = " + money;
+
 function hp(health) {
   if (health > 0) {
     health -= 10;

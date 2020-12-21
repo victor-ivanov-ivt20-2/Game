@@ -14,15 +14,20 @@
         <nav class="menu">
           <ul class="menu__list">
             <li class="menu__list-item" id="health">Здоровье = ???</li>
+            <li class="menu__list-item" id="e_health">Здоровье противника = ???</li>
+            <li class="menu__list-item" id="heal_b">хилка = ???</li>
           </ul>
         </nav>
         <a href="Main_menu.html">
-          назад
+          Сбежать
         </a>
       </div>
     </div>
   </header>
-  <script src="js/test.js"></script>
-  <!-- <script src="js/figth.js"></script> -->
+  <div class="container">
+    <button onclick="health = attack(health);">ударить</button>
+    <button onclick="health = heal(health);">хилка</button>
+  </div>
+  <script src="js/figth.js" charset="utf-8"></script>
 </body>
 </html>
