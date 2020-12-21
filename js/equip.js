@@ -9,3 +9,7 @@ function buy(money) {
     return money;
   }
 }
+
+import { objects } from './objects.js';
+let weapons = objects();
+console.log(weapons([sword]));
