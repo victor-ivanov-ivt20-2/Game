@@ -1,7 +1,8 @@
 let heal_b = Number(localStorage.getItem("heal_b"));
 let health = Number(localStorage.getItem("health"));
 let money = Number(localStorage.getItem("money"));
-let e_health = 50;
+let kills = Number(localStorage.getItem("kills"));
+let e_health = [50,100,200,500];
 document.getElementById("health").innerHTML = "Здоровье = " + health;
 document.getElementById("e_health").innerHTML = "Здоровье противника = " + e_health;
 document.getElementById("heal_b").innerHTML = "Бутыль здоровья = " + heal_b;
