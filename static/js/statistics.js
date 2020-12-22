@@ -1,17 +1,17 @@
-let e_health = 50
 let health = 100;
 let money = 0;
 let strength = 10;
+let heal_b = 5;
 
-if (Number(localStorage.getItem("health")) > 0 &&
-Number(localStorage.getItem("money")) >= 0) {
+if (Number(localStorage.getItem("health")) > 0) {
   health = Number(localStorage.getItem("health"));
   money = Number(localStorage.getItem("money"));
   strength = Number(localStorage.getItem("money"));
+  heal_b = Number(localStorage.getItem("heal_b"));
 }
 
 localStorage.setItem("health", health);
-localStorage.setItem("money", money);
+localStorage.setItem("heal_b", heal_b);
 
 document.getElementById("health").innerHTML = "Здоровье = " + health;
 document.getElementById("money").innerHTML = "Монеты = " + money;
