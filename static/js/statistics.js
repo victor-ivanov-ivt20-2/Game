@@ -2,7 +2,7 @@ let health = 100;
 let money = 0;
 let strength = 10;
 let heal_b = 5;
-let kills = 0;
+let kills = 1;
 
 if (Number(localStorage.getItem("health")) > 0) {
   health = Number(localStorage.getItem("health"));
