@@ -1,0 +1,15 @@
+.equipment__div {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.weapons__list__div {
+  width: 200px;
+  height: 150px;
+}
+.weapons__list-item + .weapons__list-item {
+  margin-left: 50px;
+}
+.weapons__list {
+  display: flex;
+}

@@ -4,9 +4,9 @@ let money = Number(localStorage.getItem("money"));
 let kills = Number(localStorage.getItem("kills"));
 let k = [50,100,150];
 let e_health = k[kills];
-document.getElementById("health").innerHTML = "Здоровье = " + health;
-document.getElementById("e_health").innerHTML = "Здоровье противника = " + e_health;
-document.getElementById("heal_b").innerHTML = "Бутыль здоровья = " + heal_b;
+document.getElementById("health").innerHTML = health;
+document.getElementById("e_health").innerHTML = e_health;
+document.getElementById("heal_b").innerHTML = heal_b;
 
 function attack(health) {
     e_health -= 10;
@@ -24,8 +24,8 @@ function attack(health) {
         kills++;
         }
       }
-      document.getElementById("health").innerHTML = "Здоровье = " + health;
-      document.getElementById("e_health").innerHTML = "Здоровье противника = " + e_health;
+      document.getElementById("health").innerHTML = health;
+      document.getElementById("e_health").innerHTML = e_health;
       localStorage.setItem("health", health);
       return health;
     } else {
@@ -40,8 +40,8 @@ function heal(health) {
     health += 10;
     localStorage.setItem("heal_b", heal_b);
     localStorage.setItem("health", health);
-    document.getElementById("heal_b").innerHTML = "Бутыль здоровья = " + heal_b;
-    document.getElementById("health").innerHTML = "Здоровье = " + health;
+    document.getElementById("heal_b").innerHTML = heal_b;
+    document.getElementById("health").innerHTML = health;
     return health;
   } else if (health >= 100) {
     alert ("ХП заполнено на максимум");
