@@ -19,7 +19,7 @@ let heal_b = 5;
 let kills = 1;
 let weapons = [10, 25, 50];
 let armors = [10, 50, 100];
-let equipped = [weapons[0], 0];
+let equipped = "10,0";
 let equipped__s = [], s = '';
 
 if (Number(localStorage.getItem("health")) > 0) {
@@ -31,9 +31,9 @@ if (Number(localStorage.getItem("health")) > 0) {
   weapons = localStorage.getItem("weapons");
   armors = localStorage.getItem("armors");
   equipped = localStorage.getItem("equipped");
-  getArrayFromStroke(equipped, equipped__s);
 }
 
+getArrayFromStroke(equipped, equipped__s);
 localStorage.setItem("health", health);
 localStorage.setItem("heal_b", heal_b);
 localStorage.setItem("kills", kills);
