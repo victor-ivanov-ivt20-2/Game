@@ -5,7 +5,7 @@
 }
 .equipment__list__div {
   width: 200px;
-  height: 150px;
+  height: 200px;
 }
 .equipment__list-item + .equipment__list-item {
   margin-left: 50px;
@@ -15,4 +15,8 @@
 }
 .armors__list {
   display: flex;
+}
+.equip__button {
+  margin: 5px;
+  padding: 10px 20px;
 }
