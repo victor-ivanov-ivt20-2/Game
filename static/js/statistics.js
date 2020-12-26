@@ -41,5 +41,5 @@ localStorage.setItem("weapons", weapons);
 localStorage.setItem("armors", armors);
 localStorage.setItem("equipped", equipped);
 
-document.getElementById("health").innerHTML = Number(health) + Number(equipped__s[1]);
+document.getElementById("health").innerHTML = health;
 document.getElementById("money").innerHTML = money;
