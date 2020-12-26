@@ -16,7 +16,8 @@
           <ul class="menu__list">
             <li class="menu__list-item">Здоровье = <span id="health"></span></li>
             <li class="menu__list-item">Здоровье противника = <span id="e_health"></span></li>
-            <li class="menu__list-item">хилка = <span id="heal_b"></span></li>
+            <li class="menu__list-item">зелье = <span id="heal_b"></span></li>
+            <li class="menu__list-item">большое зелье = <span id="bigheal_b"></span></li>
           </ul>
         </nav>
         <a href="/main_menu">
@@ -29,8 +30,10 @@
     <div class="enemy">
       <img src="static/resources/images/unknown__0.png" alt="" id="enemy__image" class="enemy__png">
     </div>
-    <button onclick="health = attack(health);">ударить</button>
-    <button onclick="health = heal(health);">хилка</button>
+    <button onclick="health = sattack(health);">сильный удар</button>
+    <button onclick="health = attack(health);">удар</button>
+    <button onclick="health = heal(health);">выпить зелье</button>
+    <button onclick="health = bigheal(health);">выпить большое зелье</button>
   </div>
   <script src="static/js/figth.js" charset="utf-8"></script>
 </body>
