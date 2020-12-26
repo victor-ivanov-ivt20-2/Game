@@ -196,5 +196,6 @@ function sattack(health) {
     return health;
   } else {
     alert("перезарядка"+cooldown+"ход(-а)");
+    return health;
   }
 }

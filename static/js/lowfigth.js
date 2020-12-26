@@ -5,21 +5,21 @@ let equipped  = getArrayFromStroke(localStorage.getItem("equipped"), equipped__s
 let heal_b = Number(localStorage.getItem("heal_b"));
 let bigheal_b = Number(localStorage.getItem("bigheal_b"));
 let money = Number(localStorage.getItem("money"));
-let kills = Number(localStorage.getItem("kills"));
+let lowkills = Number(localStorage.getItem("lowkills"));
 let k = [50,10,50,10,50,10];
-let e_health = k[kills];
+let e_health = k[lowkills];
 let health = Number(localStorage.getItem("health"));
 let cooldown = 0;
 
-if (kills != 0) {
+if (lowkills != 0) {
   const enemy = document.querySelector(".enemy");
-  let enemy__kills = document.createElement("img");
+  let enemy__lowkills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
-  enemy__kills.setAttribute("class", "enemy__png");
-  enemy__kills.setAttribute("src", `static/resources/images/unknown__${kills}.png`);
-  enemy__kills.setAttribute("id", "enemy__image");
-  enemy.replaceChild(enemy__kills,enemy__image);
-  // enemy__image = enemy__kills;
+  enemy__lowkills.setAttribute("class", "enemy__png");
+  enemy__lowkills.setAttribute("src", `static/resources/images/unknown__${lowkills}.png`);
+  enemy__lowkills.setAttribute("id", "enemy__image");
+  enemy.replaceChild(enemy__lowkills,enemy__image);
+  // enemy__image = enemy__lowkills;
 }
 
 document.getElementById("health").innerHTML = health;
@@ -52,35 +52,35 @@ function attack(health) {
     cooldown--;
   }
   const enemy = document.querySelector(".enemy");
-  let enemy__kills = document.createElement("img");
+  let enemy__lowkills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
   e_health -= selfRandom(equipped__s[0]);
   if (e_health>0) {
     console.log(e_health);
     console.log(health);
   } else if (e_health<=0){
-    random__s = selfRandom(k[kills]/10);
+    random__s = selfRandom(k[lowkills]/10);
     money += random__s;
     alert (`враг убит, вы получили ${random__s} монет`);
     localStorage.setItem("money", money);
     console.log(`враг уничтожен, вы получили ${random__s} монет`);
-    kills+=2;
+    lowkills+=2;
     localStorage.setItem("health", health);
-    if (kills == k.length) {
-    kills = 0;
+    if (lowkills == k.length) {
+    lowkills = 0;
     document.location.href = "/main_menu";
   } else {
-      enemy__kills.setAttribute("class", "enemy__png");
-      enemy__kills.setAttribute("src", `static/resources/images/unknown__${kills}.png`);
-      enemy__kills.setAttribute("id", "enemy__image");
-      enemy.replaceChild(enemy__kills,enemy__image);
-      enemy__image = enemy__kills;
-      // enemy__image.setAttribute("src", `static/resources/images/unknown__${kills-2}.png`);
+      enemy__lowkills.setAttribute("class", "enemy__png");
+      enemy__lowkills.setAttribute("src", `static/resources/images/unknown__${lowkills}.png`);
+      enemy__lowkills.setAttribute("id", "enemy__image");
+      enemy.replaceChild(enemy__lowkills,enemy__image);
+      enemy__image = enemy__lowkills;
+      // enemy__image.setAttribute("src", `static/resources/images/unknown__${lowkills-2}.png`);
       console.log(enemy__image);
-      console.log(enemy__kills);
-      e_health = k[kills];
+      console.log(enemy__lowkills);
+      e_health = k[lowkills];
     }
-    localStorage.setItem("kills", kills);
+    localStorage.setItem("lowkills", lowkills);
     document.getElementById("e_health").innerHTML = e_health;
     return health;
   }
@@ -89,7 +89,7 @@ function attack(health) {
   return health;
 }
 function e_attack(health) {
-  health = Math.floor(health - (selfRandom(k[kills+1])/(1 + equipped__s[1]/100)));
+  health = Math.floor(health - (selfRandom(k[lowkills+1])/(1 + equipped__s[1]/100)));
   if (health > 0) {
     console.log("У вас столько хп" + health);
   } else if (health <= 0) {
@@ -156,38 +156,38 @@ function bigheal(health) {
 }
 
 function sattack(health) {
-  if (cooldown == 0) {
+  if (cooldown <= 0) {
     cooldown = 3;
     const enemy = document.querySelector(".enemy");
-    let enemy__kills = document.createElement("img");
+    let enemy__lowkills = document.createElement("img");
     let enemy__image = document.getElementById("enemy__image");
     e_health -= selfRandom(equipped__s[0])*2;
     if (e_health>0) {
       console.log(e_health);
       console.log(health);
     } else if (e_health<=0){
-      random__s = selfRandom(k[kills]/10);
+      random__s = selfRandom(k[lowkills]/10);
       money += random__s;
       alert (`враг убит, вы получили ${random__s} монет`);
       localStorage.setItem("money", money);
       console.log(`враг уничтожен, вы получили ${random__s} монет`);
-      kills+=2;
+      lowkills+=2;
       localStorage.setItem("health", health);
-      if (kills == k.length) {
-      kills = 0;
+      if (lowkills == k.length) {
+      lowkills = 0;
       document.location.href = "/main_menu";
     } else {
-        enemy__kills.setAttribute("class", "enemy__png");
-        enemy__kills.setAttribute("src", `static/resources/images/unknown__${kills}.png`);
-        enemy__kills.setAttribute("id", "enemy__image");
-        enemy.replaceChild(enemy__kills,enemy__image);
-        enemy__image = enemy__kills;
-        // enemy__image.setAttribute("src", `static/resources/images/unknown__${kills-2}.png`);
+        enemy__lowkills.setAttribute("class", "enemy__png");
+        enemy__lowkills.setAttribute("src", `static/resources/images/unknown__${lowkills}.png`);
+        enemy__lowkills.setAttribute("id", "enemy__image");
+        enemy.replaceChild(enemy__lowkills,enemy__image);
+        enemy__image = enemy__lowkills;
+        // enemy__image.setAttribute("src", `static/resources/images/unknown__${lowkills-2}.png`);
         console.log(enemy__image);
-        console.log(enemy__kills);
-        e_health = k[kills];
+        console.log(enemy__lowkills);
+        e_health = k[lowkills];
       }
-      localStorage.setItem("kills", kills);
+      localStorage.setItem("lowkills", lowkills);
       document.getElementById("e_health").innerHTML = e_health;
       return health;
     }
@@ -196,5 +196,6 @@ function sattack(health) {
     return health;
   } else {
     alert("перезарядка"+cooldown+"ход(-а)");
+    return health;
   }
 }

@@ -27,6 +27,14 @@ app.get('/fight', function(req, res) {
   res.sendFile(__dirname + '/fight.html');
 })
 
+app.get('/map', function(req, res) {
+  res.sendFile(__dirname + '/map.html');
+})
+
+app.get('/lowfight', function(req, res) {
+  res.sendFile(__dirname + '/lowfight.html');
+})
+
 app.listen(PORT, () => {
   console.log("Игра запущена")
 });
