@@ -48,7 +48,7 @@ function selfRandom(element) {
 let random__s = 0;
 
 function attack(health) {
-  if (cooldown == 3) {
+  if (cooldown <= 3) {
     cooldown--;
   }
   const enemy = document.querySelector(".enemy");
@@ -96,7 +96,6 @@ function e_attack(health) {
     alert ("Вы погибли");
     localStorage.clear();
     document.location.href = "/main_menu";
-    health = "смерть"
     return health;
   }
   document.getElementById("health").innerHTML = health;
@@ -162,7 +161,7 @@ function sattack(health) {
     const enemy = document.querySelector(".enemy");
     let enemy__kills = document.createElement("img");
     let enemy__image = document.getElementById("enemy__image");
-    e_health -= selfRandom(equipped__s[0]);
+    e_health -= selfRandom(equipped__s[0])*2;
     if (e_health>0) {
       console.log(e_health);
       console.log(health);
