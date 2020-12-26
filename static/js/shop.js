@@ -2,7 +2,8 @@ let money = Number(localStorage.getItem("money"));
 let weapons = localStorage.getItem("weapons");
 let armors = localStorage.getItem("armors");
 let weapons__s = [], armors__s = [];
-let goods = ['10w','25w','50w',"10a","50a","100a"];
+let goods = ['10w','25w','50w',"10a","50a","100a",
+"0ws", "250ws", "500ws", "100as", "250as", "500as"];
 document.getElementById("money").innerHTML = money;
 
 function getArrayFromStroke(stroke__s, array__s) {
@@ -59,28 +60,40 @@ for (let i = 1; i-1 < goods.length; i++) {
     if (i_i[i-1]*0 != 0) i_i.push(0);
   }
 }
+let count = 0;
 for (let i = 1; i-1 < goods.length; i++) {
   if (goods[i-1][goods[i-1].length - 1] === "w") {
+    count++;
     if (i_i[i-1] != i) {
       weapon__i.push(document.createElement("li"));
       weapon__i[i - count__w -1].setAttribute("class", "equipment__list-item");
       weapon__i[i - count__w -1].innerHTML = `<div class="equipment__list__div"> <img src="static/resources/images/меч_${i}.jpg"
-      alt="меч_${i}">урон = <span>${parseInt(goods[i-1])}</span>
-      <button onclick="equip(${count__w+1}, 'weapon')" class="buy__button">
-      <span id="buy__weapon__${count__w+1}">купить</span></button></div>`;
+      alt="меч_${i}">цена = <span id="price__weapon__${i}"></span>урон = <span>${parseInt(goods[i-1])}</span>
+      <button onclick="equip(${i}, 'weapon')" class="buy__button">
+      <span id="buy__weapon__${i}">купить</span></button></div>`;
       weapons__list.appendChild(weapon__i[i - count__w -1]);
     } else count__w++;
   } else if (goods[i-1][goods[i-1].length - 1] === "a") {
+    count++;
     if (i_i[i-1] != i) {
       armor__i.push(document.createElement("li"));
       armor__i[count__a].setAttribute("class", "equipment__list-item");
       armor__i[count__a].innerHTML = `<div class="equipment__list__div"> <img src="static/resources/images/броня_${i-3}.jpg"
-      alt="броня_${count__a}">защита = <span>${parseInt(goods[i-1])}</span>
-      <button onclick="equip(${count__a+1}, 'armor')" class="buy__button">
-      <span id="buy__armor__${count__a+1}">купить</span></button></div>`;
+      alt="броня_${i-3}">цена = <span id="price__armor__${i}"></span>
+      защита = <span>${parseInt(goods[i-1])}</span>
+      <button onclick="equip(${i}, 'armor')" class="buy__button">
+      <span id="buy__armor__${i}">купить</span></button></div>`;
       armors__list.appendChild(armor__i[count__a]);
       count__a++;
     }
+  } else if (goods[i-1][goods[i-1].length - 2]
+    + goods[i-1][goods[i-1].length - 1] === "ws") {
+    let kl = document.getElementById("price__weapon__" + (i-count));
+    if (kl != null) {kl.innerHTML = parseInt(goods[i-1]);}
+  } else if (goods[i-1][goods[i-1].length - 2]
+    + goods[i-1][goods[i-1].length - 1] === "as") {
+    let kl = document.getElementById("price__armor__" + (i-count));
+    if (kl != null) kl.innerHTML = parseInt(goods[i-1]);
   }
 }
 array = [100,500,1000];

@@ -19,8 +19,8 @@ let heal_b = 5;
 let bigheal_b = 2;
 let kills = 0;
 let lowkills = 0;
-let weapons = [10, 25, 50];
-let armors = [10,50.100];
+let weapons = [10];
+let armors = [];
 let equipped = "10,0";
 let equipped__s = [], s = '';
 
