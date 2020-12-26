@@ -2,7 +2,7 @@ let heal_b = Number(localStorage.getItem("heal_b"));
 let health = Number(localStorage.getItem("health"));
 let money = Number(localStorage.getItem("money"));
 let kills = Number(localStorage.getItem("kills"));
-let k = [50,100,150];
+let k = [50,10,100,20,150,30];
 let e_health = k[kills];
 let equipped__s = [];
 let equipped  = getArrayFromStroke(localStorage.getItem("equipped"), equipped__s);
@@ -28,25 +28,23 @@ function selfRandom(e_attack) {
     return a;
   }
 
-
 function attack(health) {
   e_health -= selfRandom(equipped__s[0]);
-  health -= 1;
+  health -= selfRandom(k[kills+1]);
   if (health > 0) {
     if (e_health>0) {
-      console.log("враг и игрок получили -10 хп");
+      console.log(e_health);
+      console.log(health);
     } else if (e_health<=0){
       alert ('враг убит, вы получили 5 монет');
       money += 5;
       localStorage.setItem("money", money);
       console.log("враг уничтожен, вы получили 5 монет");
-      e_health = k[kills];
-      if (kills<k.length-1) {
-      kills++;
-      }
-      if (kills >= k.length-1 && e_health <= 0) {
+      if (kills == k.lengths) {
       document.location.href = "/main_menu";
-      console.log('ss')
+      } else {
+        kills+=2;
+        e_health = k[kills];
       }
     }
     document.getElementById("health").innerHTML = health;
