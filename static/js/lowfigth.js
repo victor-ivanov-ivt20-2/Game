@@ -2,11 +2,11 @@ let equipped__s = [];
 
 let equipped  = getArrayFromStroke(localStorage.getItem("equipped"), equipped__s);
 
-let heal_b = Number(localStorage.getItem("heal_b"));
-let bigheal_b = Number(localStorage.getItem("bigheal_b"));
+let small_heal = Number(localStorage.getItem("small_heal"));
+let big_heal = Number(localStorage.getItem("big_heal"));
 let money = Number(localStorage.getItem("money"));
 let lowkills = Number(localStorage.getItem("lowkills"));
-let k = [50,10,50,10,50,10];
+let k = [25,5,50,5,50,10];
 let e_health = k[lowkills];
 let health = Number(localStorage.getItem("health"));
 let cooldown = 0;
@@ -24,8 +24,8 @@ if (lowkills != 0) {
 
 document.getElementById("health").innerHTML = health;
 document.getElementById("e_health").innerHTML = e_health;
-document.getElementById("heal_b").innerHTML = heal_b;
-document.getElementById("bigheal_b").innerHTML = bigheal_b;
+document.getElementById("small_heal").innerHTML = small_heal;
+document.getElementById("big_heal").innerHTML = big_heal;
 
 function getArrayFromStroke(stroke__s, array__s) {
   let s = '';
@@ -89,7 +89,11 @@ function attack(health) {
   return health;
 }
 function e_attack(health) {
-  health = Math.floor(health - (selfRandom(k[lowkills+1])/(1 + equipped__s[1]/100)));
+  if (equipped__s[1] != undefined) {
+    health = Math.floor(health - (selfRandom(k[lowkills+1])/(1 + equipped__s[1]/100)));
+  } else {
+    health -= selfRandom(k[lowkills+1]);
+  }
   if (health > 0) {
     console.log("У вас столько хп" + health);
   } else if (health <= 0) {
@@ -104,23 +108,23 @@ function e_attack(health) {
 }
 
 function heal(health) {
-  if (heal_b > 0 && health > 90 && health != 100) {
-    heal_b-=1;
+  if (small_heal > 0 && health > 90 && health != 100) {
+    small_heal-=1;
     health = health + (100-health);
-    localStorage.setItem("heal_b", heal_b);
+    localStorage.setItem("small_heal", small_heal);
     localStorage.setItem("health", health);
-    document.getElementById("heal_b").innerHTML = heal_b;
+    document.getElementById("small_heal").innerHTML = small_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else if (health >= 100) {
     alert ("ХП заполнено на максимум");
     return health;
-  } else if (heal_b>0 && health < 100) {
-    heal_b-=1;
+  } else if (small_heal>0 && health < 100) {
+    small_heal-=1;
     health += 10;
-    localStorage.setItem("heal_b", heal_b);
+    localStorage.setItem("small_heal", small_heal);
     localStorage.setItem("health", health);
-    document.getElementById("heal_b").innerHTML = heal_b;
+    document.getElementById("small_heal").innerHTML = small_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else {
@@ -130,23 +134,23 @@ function heal(health) {
 }
 
 function bigheal(health) {
-  if (bigheal_b > 0 && health > 80 && health != 100) {
-    bigheal_b-=1;
+  if (big_heal > 0 && health > 80 && health != 100) {
+    big_heal-=1;
     health = health + (100-health);
-    localStorage.setItem("bigheal_b", bigheal_b);
+    localStorage.setItem("big_heal", big_heal);
     localStorage.setItem("health", health);
-    document.getElementById("bigheal_b").innerHTML = bigheal_b;
+    document.getElementById("big_heal").innerHTML = big_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else if (health >= 100) {
     alert ("ХП заполнено на максимум");
     return health;
-  } else if (bigheal_b>0 && health < 100) {
-    bigheal_b-=1;
+  } else if (big_heal>0 && health < 100) {
+    big_heal-=1;
     health += 20;
-    localStorage.setItem("bigheal_b", bigheal_b);
+    localStorage.setItem("big_heal", big_heal);
     localStorage.setItem("health", health);
-    document.getElementById("bigheal_b").innerHTML = bigheal_b;
+    document.getElementById("big_heal").innerHTML = big_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else {

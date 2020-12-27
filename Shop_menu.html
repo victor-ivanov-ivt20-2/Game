@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/shop.css">
   <title>Кузница</title>
 </head>
 <body>
@@ -24,13 +26,28 @@
   </header>
   <div class="container">
     <div class="shop__div">
+      <ul class="heal__ul">
+        <li class="heal__ul-li">
+          <div class="heal__ul__div">
+            У вас <span id="small_heal"></span> кусок хлеба
+            <button class="buy__button" onclick="money = buy__heal(money, 'small');">купить</button>
+          </div>
+        </li>
+        <li class="heal__ul-li">
+          <div class="heal__ul__div">
+            У вас <span id="big_heal"></span> кумыс
+            <button class="buy__button" onclick="money = buy__heal(money, 'big');">купить</button>
+          </div>
+        </li>
+      </ul>
+      <span id="title"></span>
       <div class="weapons">
-        Оружие :
+        <span id="title__weapons"></span>
         <ul class="weapons__list">
         </ul>
       </div>
-      <div class="weapons">
-        Броня :
+      <div class="armors">
+        <span id="title__armors"></span>
         <ul class="armors__list">
         </ul>
       </div>

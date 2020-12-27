@@ -1,0 +1,44 @@
+ul, li {
+  padding-left: 0px;
+}
+.shop__div {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+.buy__button {
+  width: 140px;
+  height: 50px;
+}
+.heal__ul {
+  display: flex;
+}
+.heal__ul-li + .heal__ul-li {
+  margin-left: 50px;
+}
+.heal__ul__div {
+  width: 250px;
+  height: 100px;
+}
+.equipment__list-item {
+  width: 250px;
+  height: 250px;
+}
+.equipment__list-item + .equipment__list-item {
+  margin-left: 50px;
+}
+.weapons__list {
+  display: flex;
+}
+.armors__list {
+  display: flex;
+}
+.armors {
+  margin-top: 50px;
+}
+.price__value {
+  display: block;
+}
+/* .price__value-item + .price__value-item {
+  margin-left: 20px;
+} */

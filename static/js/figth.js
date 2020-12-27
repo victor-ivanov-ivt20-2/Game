@@ -75,7 +75,6 @@ function attack(health) {
       enemy__kills.setAttribute("id", "enemy__image");
       enemy.replaceChild(enemy__kills,enemy__image);
       enemy__image = enemy__kills;
-      // enemy__image.setAttribute("src", `static/resources/images/unknown__${kills-2}.png`);
       console.log(enemy__image);
       console.log(enemy__kills);
       e_health = k[kills];
@@ -89,7 +88,11 @@ function attack(health) {
   return health;
 }
 function e_attack(health) {
-  health = Math.floor(health - (selfRandom(k[kills+1])/(1 + equipped__s[1]/100)));
+  if (equipped__s[1] != undefined) {
+    health = Math.floor(health - (selfRandom(k[lowkills+1])/(1 + equipped__s[1]/100)));
+  } else {
+    health -= selfRandom(k[lowkills+1]);
+  }
   if (health > 0) {
     console.log("У вас столько хп" + health);
   } else if (health <= 0) {

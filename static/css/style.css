@@ -50,3 +50,16 @@ a {
   text-decoration: none;
   color: black;
 }
+a:hover {
+  color: black;
+}
+a:active {
+ color: #999;
+}
+button:hover {
+  background-color: #ffffff;
+}
+button:active {
+  background-color: #666;
+  color: #ddd;
+}

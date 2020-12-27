@@ -18,5 +18,39 @@
 }
 .equip__button {
   margin: 5px;
-  padding: 10px 20px;
+  width: 140px;
+  height: 50px;
+}
+.heal__div {
+  display: flex;
+}
+.heal__div-item {
+  width: 200px;
+  height: 100px;
+}
+.heal__ul {
+  display: flex;
+}
+.heal__ul-li + .heal__ul-li {
+  margin-left: 50px;
+}
+.nothing {
+  justify-content: center;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+.titles {
+  text-align: center
+}
+.stats-items {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.stats-item + .stats-item {
+  margin-left: 50px;
 }
