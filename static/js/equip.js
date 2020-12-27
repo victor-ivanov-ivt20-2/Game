@@ -12,14 +12,16 @@ document.getElementById("health").innerHTML = health;
 document.getElementById("money").innerHTML = money;
 
 function heal__urself(heal, type__of__heal) {
-  heal = Number(heal) - 1;
   if (type__of__heal == "small") {
     if (heal < 0) {alert("больше нет кусков хлеба"); return heal;}
     else {
-      if (health > 90 && health < 100)
-      health = (10 - (health%10)) + health;
-      else if (health <= 90) health += 10;
-      else alert("хп на максимуме");
+      if (health > 90 && health < 100) {
+        health = (10 - (health%10)) + health;
+        heal = Number(heal) - 1;
+      } else if (health <= 90) {
+        heal = Number(heal) - 1;
+        health += 10;
+      } else alert("хп на максимуме");
       document.getElementById("small_heal").innerHTML = heal;
       document.getElementById("health").innerHTML = health;
       localStorage.setItem("small_heal", heal);
@@ -29,10 +31,13 @@ function heal__urself(heal, type__of__heal) {
   } else if (type__of__heal == "big") {
     if (heal < 0) {alert("больше нет кумыса"); return heal;}
     else {
-      if (health > 80 && health < 100)
-      health = (20 - (health%20)) + health;
-      else if (health <= 80) health += 20;
-      else alert("хп на максимуме");
+      if (health > 80 && health < 100) {
+        health = (20 - (health%20)) + health;
+        heal = Number(heal) - 1;
+      } else if (health <= 80) {
+        heal = Number(heal) - 1;
+        health += 20;
+      } else alert("хп на максимуме");
       document.getElementById("big_heal").innerHTML = heal;
       document.getElementById("health").innerHTML = health;
       localStorage.setItem("big_heal", heal);

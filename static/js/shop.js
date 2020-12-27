@@ -33,7 +33,7 @@ function buy__it(i, price) {
     document.getElementById("money").innerHTML = money;
     localStorage.setItem("money", money);
   } else {
-    alert("недостаточно средств!");
+    alert("у вас недостаточно средств!");
   }
 }
 
