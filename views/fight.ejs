@@ -7,6 +7,18 @@
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="../static/css/fight.css">
   <title>В путь</title>
+  <style>
+  #myProgress {
+    width: 100%;
+    background-color: #ff0000;
+  }
+
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #ddd;
+  }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -35,7 +47,35 @@
     <button onclick="health = attack(health);">удар</button>
     <button onclick="health = heal(health);">выпить зелье</button>
     <button onclick="health = bigheal(health);">выпить большое зелье</button>
+    <div id="myProgress">
+      <div id="myBar"></div>
+    </div>
+    <br>
+    <button onclick="move(health)">Click Me</button>
+
   </div>
+  <script type="text/javascript">
+  var i = 0;
+function move(health) {
+  if (true) {
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    width += health;
+    elem.style.width = width + "%";
+    return width;
+    // var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+  </script>
   <script src="../static/js/figth.js" charset="utf-8"></script>
 </body>
 </html>
