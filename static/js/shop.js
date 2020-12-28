@@ -32,7 +32,7 @@ function buy__it(i, price) {
     title.innerHTML = "куплено";
     document.getElementById("money").innerHTML = money;
     localStorage.setItem("money", money);
-  } else {
+  } else if (weapons[i-1] == 0 || armors[i-1-3] == 0) {
     alert("у вас недостаточно средств!");
   }
 }

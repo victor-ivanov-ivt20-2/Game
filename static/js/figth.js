@@ -39,6 +39,8 @@ for (let i = 0; i < k_stroke.length; i++) {
 
 let e_health = k[kills]["health"];
 
+let my__damage = 0;
+
 if (kills == 0) {
   const enemy = document.querySelector(".enemy");
   let enemy__kills = document.createElement("img");
@@ -53,6 +55,17 @@ document.getElementById("health").innerHTML = health;
 document.getElementById("e_health").innerHTML = e_health;
 document.getElementById("small_heal").innerHTML = small_heal;
 document.getElementById("big_heal").innerHTML = big_heal;
+
+function progress__bar(e_health, my__damage) {
+  let elem = document.getElementById("myBar");
+  let width = ((e_health - my__damage)*100)/k[kills]["health"];
+  if (e_health - my__damage > 0) {
+    elem.style.width = width + "%";
+    return width;
+  } else {
+    elem.style.width = 100 + "%";
+  }
+}
 
 function getArrayFromStroke(stroke__s, array__s) {
   let s = '';
@@ -81,7 +94,9 @@ function attack(health) {
   const enemy = document.querySelector(".enemy");
   let enemy__kills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
-  e_health -= selfRandom(equipped__s[0], 0.5);
+  my__damage = selfRandom(equipped__s[0], 0.5);
+  progress__bar(e_health, my__damage);
+  e_health -= my__damage;
   if (e_health>0) {
     console.log(e_health);
     console.log(health);
@@ -191,7 +206,9 @@ function sattack(health) {
     const enemy = document.querySelector(".enemy");
     let enemy__kills = document.createElement("img");
     let enemy__image = document.getElementById("enemy__image");
-    e_health -= selfRandom(equipped__s[0], 2.5);
+    my__damage = selfRandom(equipped__s[0], 2.5);
+    progress__bar(e_health, my__damage);
+    e_health -= my__damage;
     if (e_health>0) {
       console.log(e_health);
       console.log(health);
