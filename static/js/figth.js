@@ -140,7 +140,7 @@ function e_attack(health) {
   } else if (health <= 0) {
     alert ("Вы погибли");
     localStorage.clear();
-    document.location.href = "/main_menu";
+    document.location.href = "/";
     return health;
   }
   document.getElementById("health").innerHTML = health;
