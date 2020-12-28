@@ -1,25 +1,52 @@
 let equipped__s = [];
 
+function enemy__type(name, id, health, damage) {
+  this.name = name;
+  this.id = id;
+  this.health = health;
+  this.damage = damage;
+}
+
+let weak_monster = new enemy__type("слабый монстр", 1, 50, 5);
+let average_monster = new enemy__type("средний монстр", 2, 100, 5);
+let strong_monster = new enemy__type("сильный монстр", 3, 100, 15);
+let powerful_monster = new enemy__type("всемогущий", 4, 150, 20);
+let boss = new enemy__type("босс", 5, 250, 25);
+
+let k_mas = [weak_monster, average_monster, strong_monster, powerful_monster, boss];
+
 let equipped  = getArrayFromStroke(localStorage.getItem("equipped"), equipped__s);
 
 let heal_b = Number(localStorage.getItem("heal_b"));
 let bigheal_b = Number(localStorage.getItem("bigheal_b"));
 let money = Number(localStorage.getItem("money"));
 let kills = Number(localStorage.getItem("kills"));
-let k = [50,10,100,25,150,50];
-let e_health = k[kills];
+let k = [];
 let health = Number(localStorage.getItem("health"));
 let cooldown = 0;
 
-if (kills != 0) {
+let k_stroke ='';
+
+if (document.getElementById("fight__id").innerHTML == 1) k_stroke = "00001";
+else if (document.getElementById("fight__id").innerHTML == 2) k_stroke = "00112";
+else if (document.getElementById("fight__id").innerHTML == 3) k_stroke = "01122";
+else if (document.getElementById("fight__id").innerHTML == 4) k_stroke = "11223";
+else if (document.getElementById("fight__id").innerHTML == 5) k_stroke = "22334";
+
+for (let i = 0; i < k_stroke.length; i++) {
+  k.push(k_mas[k_stroke[i]]);
+}
+
+let e_health = k[kills]["health"];
+
+if (kills == 0) {
   const enemy = document.querySelector(".enemy");
   let enemy__kills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
   enemy__kills.setAttribute("class", "enemy__png");
-  enemy__kills.setAttribute("src", `static/resources/images/unknown__${kills}.png`);
+  enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id"]}.png`);
   enemy__kills.setAttribute("id", "enemy__image");
   enemy.replaceChild(enemy__kills,enemy__image);
-  // enemy__image = enemy__kills;
 }
 
 document.getElementById("health").innerHTML = health;
@@ -54,30 +81,30 @@ function attack(health) {
   const enemy = document.querySelector(".enemy");
   let enemy__kills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
-  e_health -= selfRandom(equipped__s[0]);
+  e_health -= selfRandom(equipped__s[0], 0.5);
   if (e_health>0) {
     console.log(e_health);
     console.log(health);
   } else if (e_health<=0){
-    random__s = selfRandom(k[kills]/10);
+    random__s = selfRandom(k[kills]["damage"], 2);
     money += random__s;
     alert (`враг убит, вы получили ${random__s} монет`);
     localStorage.setItem("money", money);
     console.log(`враг уничтожен, вы получили ${random__s} монет`);
-    kills+=2;
+    kills+=1;
     localStorage.setItem("health", health);
     if (kills == k.length) {
     kills = 0;
     document.location.href = "/main_menu";
   } else {
       enemy__kills.setAttribute("class", "enemy__png");
-      enemy__kills.setAttribute("src", `static/resources/images/unknown__${kills}.png`);
+      enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]['id']}.png`);
       enemy__kills.setAttribute("id", "enemy__image");
       enemy.replaceChild(enemy__kills,enemy__image);
       enemy__image = enemy__kills;
       console.log(enemy__image);
       console.log(enemy__kills);
-      e_health = k[kills];
+      e_health = k[kills]["health"];
     }
     localStorage.setItem("kills", kills);
     document.getElementById("e_health").innerHTML = e_health;
@@ -89,9 +116,9 @@ function attack(health) {
 }
 function e_attack(health) {
   if (equipped__s[1] != undefined) {
-    health = Math.floor(health - (selfRandom(k[lowkills+1])/(1 + equipped__s[1]/100)));
+    health = Math.floor(health - (selfRandom(k[kills]["damage"], 0.8)/(1 + equipped__s[1]/100)));
   } else {
-    health -= selfRandom(k[lowkills+1]);
+    health -= selfRandom(k[kills]["damage"], 0.8);
   }
   if (health > 0) {
     console.log("У вас столько хп" + health);
@@ -164,12 +191,12 @@ function sattack(health) {
     const enemy = document.querySelector(".enemy");
     let enemy__kills = document.createElement("img");
     let enemy__image = document.getElementById("enemy__image");
-    e_health -= selfRandom(equipped__s[0])*2;
+    e_health -= selfRandom(equipped__s[0], 2.5);
     if (e_health>0) {
       console.log(e_health);
       console.log(health);
     } else if (e_health<=0){
-      random__s = selfRandom(k[kills]/10);
+      random__s = selfRandom(k[kills]["damage"],2);
       money += random__s;
       alert (`враг убит, вы получили ${random__s} монет`);
       localStorage.setItem("money", money);
@@ -181,14 +208,14 @@ function sattack(health) {
       document.location.href = "/main_menu";
     } else {
         enemy__kills.setAttribute("class", "enemy__png");
-        enemy__kills.setAttribute("src", `static/resources/images/unknown__${kills}.png`);
+        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${kills}.png`);
         enemy__kills.setAttribute("id", "enemy__image");
         enemy.replaceChild(enemy__kills,enemy__image);
         enemy__image = enemy__kills;
         // enemy__image.setAttribute("src", `static/resources/images/unknown__${kills-2}.png`);
         console.log(enemy__image);
         console.log(enemy__kills);
-        e_health = k[kills];
+        e_health = k[kills]["health"];
       }
       localStorage.setItem("kills", kills);
       document.getElementById("e_health").innerHTML = e_health;
@@ -198,7 +225,7 @@ function sattack(health) {
     health = e_attack(health);
     return health;
   } else {
-    alert("перезарядка"+cooldown+"ход(-а)");
+    alert("перезарядка "+cooldown+" ход(-а)");
     return health;
   }
 }

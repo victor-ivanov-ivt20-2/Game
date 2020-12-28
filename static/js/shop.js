@@ -63,7 +63,7 @@ function buy__heal(money, type__of__heal) {
       return money;
     } else alert("у вас недостаточно средств!");
   } else if (type__of__heal == 'big') {
-    if (money >= 10){
+    if (money >= 10) {
       money -= 10;
       big_heal += 1;
       document.getElementById("money").innerHTML = money;
@@ -71,7 +71,10 @@ function buy__heal(money, type__of__heal) {
       localStorage.setItem("money", money);
       localStorage.setItem("big_heal", big_heal);
       return money;
-    } else alert("у вас недостаточно средств!");
+    } else {
+      alert("у вас недостаточно средств!");
+      return money;
+    }
   }
 }
 

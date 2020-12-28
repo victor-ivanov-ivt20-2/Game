@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/victor-ivanov-ivt20-2/Game#readme",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1"
   }
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/fight.css">
+  <title>В путь</title>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <nav class="menu">
+          <ul class="menu__list">
+            <li class="menu__list-item">Здоровье = <span id="health"></span></li>
+            <li class="menu__list-item">Здоровье противника = <span id="e_health"></span></li>
+            <li class="menu__list-item">зелье = <span id="heal_b"></span></li>
+            <li class="menu__list-item">большое зелье = <span id="bigheal_b"></span></li>
+          </ul>
+        </nav>
+        <a href="/main_menu">
+          Сбежать
+        </a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <h1 class="level"><b>Уровень : </b><span id="fight__id"><%= fightID %></span></h1>
+    <div class="enemy">
+      <img src="../static/resources/images/unknown__1.png" alt="" id="enemy__image" class="enemy__png">
+    </div>
+    <button onclick="health = sattack(health);">сильный удар</button>
+    <button onclick="health = attack(health);">удар</button>
+    <button onclick="health = heal(health);">выпить зелье</button>
+    <button onclick="health = bigheal(health);">выпить большое зелье</button>
+  </div>
+  <script src="../static/js/figth.js" charset="utf-8"></script>
+</body>
+</html>
