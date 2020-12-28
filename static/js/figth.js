@@ -7,7 +7,7 @@ function enemy__type(name, id, health, damage) {
   this.damage = damage;
 }
 
-let weak_monster = new enemy__type("слабый монстр", 1, 50, 5);
+let weak_monster = new enemy__type("слабый монстр", 1, 25, 5);
 let average_monster = new enemy__type("средний монстр", 2, 100, 5);
 let strong_monster = new enemy__type("сильный монстр", 3, 100, 15);
 let powerful_monster = new enemy__type("всемогущий", 4, 150, 20);
@@ -17,8 +17,8 @@ let k_mas = [weak_monster, average_monster, strong_monster, powerful_monster, bo
 
 let equipped  = getArrayFromStroke(localStorage.getItem("equipped"), equipped__s);
 
-let heal_b = Number(localStorage.getItem("heal_b"));
-let bigheal_b = Number(localStorage.getItem("bigheal_b"));
+let small_heal = Number(localStorage.getItem("small_heal"));
+let big_heal = Number(localStorage.getItem("big_heal"));
 let money = Number(localStorage.getItem("money"));
 let kills = Number(localStorage.getItem("kills"));
 let k = [];
@@ -51,8 +51,8 @@ if (kills == 0) {
 
 document.getElementById("health").innerHTML = health;
 document.getElementById("e_health").innerHTML = e_health;
-document.getElementById("heal_b").innerHTML = heal_b;
-document.getElementById("bigheal_b").innerHTML = bigheal_b;
+document.getElementById("small_heal").innerHTML = small_heal;
+document.getElementById("big_heal").innerHTML = big_heal;
 
 function getArrayFromStroke(stroke__s, array__s) {
   let s = '';
@@ -67,9 +67,9 @@ function getArrayFromStroke(stroke__s, array__s) {
   return array__s;
 }
 
-function selfRandom(element) {
-    let a = Math.floor(Math.random() * (element*0.5 - element + 1)) + element;;
-    return a;
+function selfRandom(element, k) {
+  let a = Math.floor(Math.random() * (element*k - element + 1)) + element;
+  return a;
 }
 
 let random__s = 0;
@@ -116,7 +116,7 @@ function attack(health) {
 }
 function e_attack(health) {
   if (equipped__s[1] != undefined) {
-    health = Math.floor(health - (selfRandom(k[kills]["damage"], 0.8)/(1 + equipped__s[1]/100)));
+    health = Math.floor(health - (selfRandom(k[kills]["damage"],0.8)/(1 + equipped__s[1]/100)));
   } else {
     health -= selfRandom(k[kills]["damage"], 0.8);
   }
@@ -134,23 +134,23 @@ function e_attack(health) {
 }
 
 function heal(health) {
-  if (heal_b > 0 && health > 90 && health != 100) {
-    heal_b-=1;
+  if (small_heal > 0 && health > 90 && health != 100) {
+    small_heal-=1;
     health = health + (100-health);
-    localStorage.setItem("heal_b", heal_b);
+    localStorage.setItem("small_heal", small_heal);
     localStorage.setItem("health", health);
-    document.getElementById("heal_b").innerHTML = heal_b;
+    document.getElementById("small_heal").innerHTML = small_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else if (health >= 100) {
     alert ("ХП заполнено на максимум");
     return health;
-  } else if (heal_b>0 && health < 100) {
-    heal_b-=1;
+  } else if (small_heal>0 && health < 100) {
+    small_heal-=1;
     health += 10;
-    localStorage.setItem("heal_b", heal_b);
+    localStorage.setItem("small_heal", small_heal);
     localStorage.setItem("health", health);
-    document.getElementById("heal_b").innerHTML = heal_b;
+    document.getElementById("small_heal").innerHTML = small_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else {
@@ -160,23 +160,23 @@ function heal(health) {
 }
 
 function bigheal(health) {
-  if (bigheal_b > 0 && health > 80 && health != 100) {
-    bigheal_b-=1;
+  if (big_heal > 0 && health > 80 && health != 100) {
+    big_heal-=1;
     health = health + (100-health);
-    localStorage.setItem("bigheal_b", bigheal_b);
+    localStorage.setItem("big_heal", big_heal);
     localStorage.setItem("health", health);
-    document.getElementById("bigheal_b").innerHTML = bigheal_b;
+    document.getElementById("big_heal").innerHTML = big_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else if (health >= 100) {
     alert ("ХП заполнено на максимум");
     return health;
-  } else if (bigheal_b>0 && health < 100) {
-    bigheal_b-=1;
+  } else if (big_heal>0 && health < 100) {
+    big_heal-=1;
     health += 20;
-    localStorage.setItem("bigheal_b", bigheal_b);
+    localStorage.setItem("big_heal", big_heal);
     localStorage.setItem("health", health);
-    document.getElementById("bigheal_b").innerHTML = bigheal_b;
+    document.getElementById("big_heal").innerHTML = big_heal;
     document.getElementById("health").innerHTML = health;
     return health;
   } else {
@@ -186,7 +186,7 @@ function bigheal(health) {
 }
 
 function sattack(health) {
-  if (cooldown == 0) {
+  if (cooldown <= 0) {
     cooldown = 3;
     const enemy = document.querySelector(".enemy");
     let enemy__kills = document.createElement("img");
@@ -196,23 +196,22 @@ function sattack(health) {
       console.log(e_health);
       console.log(health);
     } else if (e_health<=0){
-      random__s = selfRandom(k[kills]["damage"],2);
+      random__s = selfRandom(k[kills]["damage"], 2);
       money += random__s;
       alert (`враг убит, вы получили ${random__s} монет`);
       localStorage.setItem("money", money);
       console.log(`враг уничтожен, вы получили ${random__s} монет`);
-      kills+=2;
+      kills+=1;
       localStorage.setItem("health", health);
       if (kills == k.length) {
       kills = 0;
       document.location.href = "/main_menu";
     } else {
         enemy__kills.setAttribute("class", "enemy__png");
-        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${kills}.png`);
+        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id"]}.png`);
         enemy__kills.setAttribute("id", "enemy__image");
         enemy.replaceChild(enemy__kills,enemy__image);
         enemy__image = enemy__kills;
-        // enemy__image.setAttribute("src", `static/resources/images/unknown__${kills-2}.png`);
         console.log(enemy__image);
         console.log(enemy__kills);
         e_health = k[kills]["health"];

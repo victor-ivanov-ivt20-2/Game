@@ -36,6 +36,11 @@
   margin-right: 10px;
 }
 
+#exit__button {
+  width: 150px;
+  margin-right: auto;
+  margin-left: 10px;
+}
 .helper__content {
   position: relative;
   background-color: #fefefe;
