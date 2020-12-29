@@ -2,6 +2,8 @@ let equipped__s = [];
 
 let check__levels = localStorage.getItem("check__levels");
 
+//функция добавления врагов
+
 function enemy__type(name, id, health, damage) {
   this.name = name;
   this.id = id;
@@ -14,7 +16,7 @@ let average_monster = new enemy__type("средний монстр", 2, 100, 5);
 let strong_monster = new enemy__type("трёхглавый ворон", 3, 100, 15);
 let powerful_monster = new enemy__type("Ведьма", 4, 150, 20);
 let boss = new enemy__type("Уот уьутаакы", 5, 1000, 25);
-
+//массив врагов
 let k_mas = [weak_monster, average_monster, strong_monster, powerful_monster, boss];
 
 let equipped  = getArrayFromStroke(localStorage.getItem("equipped"), equipped__s);
@@ -28,13 +30,13 @@ let health = Number(localStorage.getItem("health"));
 let cooldown = 0;
 
 let k_stroke ='';
-
+//код типов врагов
 if (document.getElementById("fight__id").innerHTML == 1) k_stroke = "00001";
 else if (document.getElementById("fight__id").innerHTML == 2) k_stroke = "00112";
 else if (document.getElementById("fight__id").innerHTML == 3) k_stroke = "01122";
 else if (document.getElementById("fight__id").innerHTML == 4) k_stroke = "11223";
 else if (document.getElementById("fight__id").innerHTML == 5) k_stroke = "22334";
-
+//в зависимости от страниц, используется определённый код врагов
 for (let i = 0; i < k_stroke.length; i++) {
   k.push(k_mas[k_stroke[i]]);
 }
@@ -42,7 +44,7 @@ for (let i = 0; i < k_stroke.length; i++) {
 let e_health = k[kills]["health"];
 
 let my__damage = 0;
-
+//добавления рисунка врага
 if (kills == 0) {
   const enemy = document.querySelector(".enemy");
   let enemy__kills = document.createElement("img");
@@ -57,7 +59,7 @@ document.getElementById("health").innerHTML = health;
 document.getElementById("e_health").innerHTML = e_health;
 document.getElementById("small_heal").innerHTML = small_heal;
 document.getElementById("big_heal").innerHTML = big_heal;
-
+//функция хп полоски врага
 function progress__bar(e_health, my__damage) {
   let elem = document.getElementById("myBar");
   let width = ((e_health - my__damage)*100)/k[kills]["health"];
@@ -68,7 +70,7 @@ function progress__bar(e_health, my__damage) {
     elem.style.width = 100 + "%";
   }
 }
-
+//из строки в список
 function getArrayFromStroke(stroke__s, array__s) {
   let s = '';
   for (let i = 0; i-1 < stroke__s.length; i++) {
@@ -81,14 +83,14 @@ function getArrayFromStroke(stroke__s, array__s) {
   }
   return array__s;
 }
-
+//взять рандомные значения
 function selfRandom(element, k) {
   let a = Math.floor(Math.random() * (element*k - element + 1)) + element;
   return a;
 }
 
 let random__s = 0;
-
+//атака
 function attack(health) {
   if (cooldown <= 3) {
     cooldown--;

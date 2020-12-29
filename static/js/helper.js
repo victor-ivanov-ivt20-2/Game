@@ -1,3 +1,5 @@
+//js для всплывающего окна
+
 const div__button = document.querySelector(".div__button");
 let help = document.getElementById("help")
 let helperText = document.getElementById("helperText");

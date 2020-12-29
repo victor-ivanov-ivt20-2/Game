@@ -82,6 +82,7 @@ let weapon__i = [], armor__i = [];
 let count__w = 0, count__a = 0;
 let count = 0;
 let price = 6;
+//цикл добавления товаров в html
 for (let i = 1; i-1 < goods.length; i++) {
   if (goods[i-1][goods[i-1].length - 1] === "w") {
     count++;
@@ -122,6 +123,7 @@ for (let i = 1; i-1 < goods.length; i++) {
     if (kl != null) kl.innerHTML = parseInt(goods[i-1]);
   }
 }
+//проверка наличия оружий и брони
 if (count__a > 0) {
   document.getElementById("title__armors").innerHTML = "Броня :";
 }

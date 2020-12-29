@@ -1,3 +1,5 @@
+//js для проверки пройденных уровней
+
 function not__yet(i) {
   if (check__levels[0] != i) alert("Уровень недоступен");
 }

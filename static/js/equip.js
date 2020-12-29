@@ -10,7 +10,7 @@ if (small_heal >= 0) document.getElementById("small_heal").innerHTML = small_hea
 if (big_heal >= 0) document.getElementById("big_heal").innerHTML = big_heal;
 document.getElementById("health").innerHTML = health;
 document.getElementById("money").innerHTML = money;
-
+//полечи себя
 function heal__urself(heal, type__of__heal) {
   if (type__of__heal == "small") {
     if (heal <= 0) {alert("больше нет кусков хлеба"); return heal;}
@@ -46,7 +46,7 @@ function heal__urself(heal, type__of__heal) {
     }
   }
 }
-
+//взять из строки список
 function getArrayFromStroke(stroke__s, array) {
   let s = '';
   for (let i = 0; i - 1 < stroke__s.length; i++) {
@@ -60,7 +60,7 @@ function getArrayFromStroke(stroke__s, array) {
   }
   return array;
 }
-
+//экипировать предмет
 function equip(equipment, type__of__equipment) {
   if (type__of__equipment == "weapon") {
     if (equipped[0] == weapons[equipment-1]) {
@@ -104,6 +104,7 @@ let weapon__i = [], armor__i = [];
 const weapons__list = document.querySelector(".weapons__list");
 const armors__list = document.querySelector(".armors__list");
 let count__w = 0, count__a = 0;
+//циклы добавления элементов в html
 for (let i = 1; i-1 < weapons.length; i++) {
   if (weapons[i-1] != 0) {
     weapon__i.push(document.createElement("li"));
@@ -128,7 +129,7 @@ for (let i = 1; i-1 < armors.length; i++) {
     count__a++;
   }
 }
-
+//проверка, есть ли оружия или броня, если есть, то пишется в html
 if (count__w != 0) {
   let title__weapons = document.getElementById("title__weapons");
   title__weapons.innerHTML = "Оружие : ";
@@ -144,7 +145,8 @@ if (count__w == 0 && count__a == 0 && (small_heal + big_heal < 0)) {
   nothing.innerHTML = "У вас ничего нет";
   equipment__div.appendChild(nothing);
 }
-
+//если надел что-либо, и это сохранилось в хранилище, то зайдя обратно в инвентарь,
+//то он покажет, что это у тебя надето.
 let l = 0;
 for (let i = 1; i-1 < weapons.length; i++) {
   if (weapons[i-1] == equipped[0] && weapons[i-1] != 0) {
