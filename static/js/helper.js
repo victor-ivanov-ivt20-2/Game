@@ -4,7 +4,7 @@ let helperText = document.getElementById("helperText");
 let count = 0, check = true, check__exit = true;
 let next__button = document.getElementById('next__button');
 let array__text = [
-  `Вы Нюргун Боотур Стремительный`,
+  `Вы нюргун`,
   `В кузнице ваш ждут ... А в пути, вас ждут монстры, которых надо победить`,
   ``,
   ``

@@ -22,12 +22,13 @@ let small_heal = 0;
 let big_heal = 0;
 let kills = 0;
 let lowkills = 0;
-let weapons = [0,0,0];
+let weapons = [10,0,0];
 let weapons__s = [], armors__s = [];
-let armors = [0,0,0];
+let armors = [10,0,0];
 let equipped = "5,0";
 let equipped__s = [], s = '';
 let check__help = 'true';
+let check__levels = "1";
 
 if (Number(localStorage.getItem("health")) > 0) {
   health = Number(localStorage.getItem("health"));
@@ -42,19 +43,21 @@ if (Number(localStorage.getItem("health")) > 0) {
   armors = getArrayFromStroke(localStorage.getItem("armors"),armors__s);
   equipped = localStorage.getItem("equipped");
   check__help = localStorage.getItem("check__help");
+  check__levels = localStorage.getItem("check__levels");
 }
 
 localStorage.setItem("money", money);
 localStorage.setItem("health", health);
 localStorage.setItem("small_heal", small_heal);
 localStorage.setItem("big_heal", big_heal);
-// localStorage.setItem("kills", kills);
+localStorage.setItem("kills", kills);
 localStorage.setItem("lowkills", lowkills);
 localStorage.setItem("weapons", weapons);
 localStorage.setItem("armors", armors);
 localStorage.setItem("equipped", equipped);
 localStorage.setItem("goods", goods);
 localStorage.setItem("check__help", check__help);
+localStorage.setItem("check__levels", check__levels);
 
 document.getElementById("health").innerHTML = health;
 document.getElementById("money").innerHTML = money;

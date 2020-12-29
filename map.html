@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/map__helper.css">
   <title>Олонхо</title>
 </head>
 <body>
@@ -20,24 +22,30 @@
         <a href="Main_menu">
           Назад
         </a>
-        <a href="lowfight">
-          лоу
-        </a>
-        <a href="fight">
-          сред
-        </a>
       </div>
     </div>
   </header>
   <div class="container">
     <div class="menu__menu">
-      <a href="fight/1">1</a>
-      <a href="fight/2">2</a>
-      <a href="fight/3">3</a>
-      <a href="fight/4">4</a>
-      <a href="fight/5">5</a>
+      <a href="/equipment">0</a>
+      <a id="a_1" onclick="not__yet(1);">1</a>
+      <a id="a_2" onclick="not__yet(2);">2</a>
+      <a id="a_3" onclick="not__yet(3);">3</a>
+      <a id="a_4" onclick="not__yet(4);">4</a>
+      <a id="a_5" onclick="not__yet(5);">5</a>
+    </div>
+  </div>
+  <div class="helper" id="help">
+    <div class="helper__content">
+      <div class="helper__content-text" id="helperText">
+      </div>
+      <div class="div__button">
+        <button onclick="next();" id="next__button" type="button" name="button">Далее</button>
+      </div>
     </div>
   </div>
   <script src="static/js/statistics.js" charset="utf-8"></script>
+  <script src="static/js/helper.js" charset="utf-8"></script>
+  <script src="static/js/new__level.js" charset="utf-8"></script>
 </body>
 </html>

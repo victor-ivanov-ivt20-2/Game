@@ -1,17 +1,20 @@
 let equipped__s = [];
 
-function enemy__type(name, id, health, damage) {
+let check__levels = localStorage.getItem("check__levels");
+
+function enemy__type(name, id, id__jpg, health, damage) {
   this.name = name;
   this.id = id;
+  this.id__jpg = id__jpg
   this.health = health;
   this.damage = damage;
 }
 
-let weak_monster = new enemy__type("слабый монстр", 1, 25, 5);
-let average_monster = new enemy__type("средний монстр", 2, 100, 5);
-let strong_monster = new enemy__type("сильный монстр", 3, 100, 15);
-let powerful_monster = new enemy__type("всемогущий", 4, 150, 20);
-let boss = new enemy__type("босс", 5, 250, 25);
+let weak_monster = new enemy__type("слабый монстр", 1, 1, 25, 5);
+let average_monster = new enemy__type("средний монстр", 2, 1, 100, 5);
+let strong_monster = new enemy__type("трёхглавый ворон", 3, 2, 100, 15);
+let powerful_monster = new enemy__type("Ведьма", 4, 3, 150, 20);
+let boss = new enemy__type("Уот уьутаакы", 5, 4, 1000, 25);
 
 let k_mas = [weak_monster, average_monster, strong_monster, powerful_monster, boss];
 
@@ -46,7 +49,7 @@ if (kills == 0) {
   let enemy__kills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
   enemy__kills.setAttribute("class", "enemy__png");
-  enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id"]}.png`);
+  enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id__jpg"]}.png`);
   enemy__kills.setAttribute("id", "enemy__image");
   enemy.replaceChild(enemy__kills,enemy__image);
 }
@@ -98,8 +101,8 @@ function attack(health) {
   progress__bar(e_health, my__damage);
   e_health -= my__damage;
   if (e_health>0) {
-    console.log(e_health);
-    console.log(health);
+    console.log("Здоровье противника " + e_health);
+    console.log("Ваше здоровье " + health);
   } else if (e_health<=0){
     random__s = selfRandom(k[kills]["damage"], 2);
     money += random__s;
@@ -110,15 +113,17 @@ function attack(health) {
     localStorage.setItem("health", health);
     if (kills == k.length) {
     kills = 0;
-    document.location.href = "/main_menu";
+    if (Number(check__levels[0]) < Number(document.getElementById("fight__id").innerHTML) + 1) {
+      check__levels = check__levels.replace(check__levels[0], String(Number(document.getElementById("fight__id").innerHTML) + 1));
+      localStorage.setItem("check__levels", check__levels);
+    }
+    document.location.href = "/map";
   } else {
       enemy__kills.setAttribute("class", "enemy__png");
-      enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]['id']}.png`);
+      enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]['id__jpg']}.png`);
       enemy__kills.setAttribute("id", "enemy__image");
       enemy.replaceChild(enemy__kills,enemy__image);
       enemy__image = enemy__kills;
-      console.log(enemy__image);
-      console.log(enemy__kills);
       e_health = k[kills]["health"];
     }
     localStorage.setItem("kills", kills);
@@ -210,8 +215,8 @@ function sattack(health) {
     progress__bar(e_health, my__damage);
     e_health -= my__damage;
     if (e_health>0) {
-      console.log(e_health);
-      console.log(health);
+      console.log("Здоровье противника " + e_health);
+      console.log("Ваше здоровье " + health);
     } else if (e_health<=0){
       random__s = selfRandom(k[kills]["damage"], 2);
       money += random__s;
@@ -222,15 +227,18 @@ function sattack(health) {
       localStorage.setItem("health", health);
       if (kills == k.length) {
       kills = 0;
-      document.location.href = "/main_menu";
+      if (Number(check__levels[0]) < Number(document.getElementById("fight__id").innerHTML) + 1) {
+        check__levels = check__levels.replace(check__levels[0], String(Number(document.getElementById("fight__id").innerHTML) + 1));
+        localStorage.setItem("check__levels", check__levels);
+      }
+      document.getElementById("fight__id").innerHTML == 1
+      document.location.href = "/map";
     } else {
         enemy__kills.setAttribute("class", "enemy__png");
-        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id"]}.png`);
+        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id__jpg"]}.png`);
         enemy__kills.setAttribute("id", "enemy__image");
         enemy.replaceChild(enemy__kills,enemy__image);
         enemy__image = enemy__kills;
-        console.log(enemy__image);
-        console.log(enemy__kills);
         e_health = k[kills]["health"];
       }
       localStorage.setItem("kills", kills);
