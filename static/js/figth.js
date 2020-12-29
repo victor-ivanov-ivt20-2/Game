@@ -2,19 +2,18 @@ let equipped__s = [];
 
 let check__levels = localStorage.getItem("check__levels");
 
-function enemy__type(name, id, id__jpg, health, damage) {
+function enemy__type(name, id, health, damage) {
   this.name = name;
   this.id = id;
-  this.id__jpg = id__jpg
   this.health = health;
   this.damage = damage;
 }
 
-let weak_monster = new enemy__type("слабый монстр", 1, 1, 25, 5);
-let average_monster = new enemy__type("средний монстр", 2, 1, 100, 5);
-let strong_monster = new enemy__type("трёхглавый ворон", 3, 2, 100, 15);
-let powerful_monster = new enemy__type("Ведьма", 4, 3, 150, 20);
-let boss = new enemy__type("Уот уьутаакы", 5, 4, 1000, 25);
+let weak_monster = new enemy__type("слабый монстр", 1, 25, 5);
+let average_monster = new enemy__type("средний монстр", 2, 100, 5);
+let strong_monster = new enemy__type("трёхглавый ворон", 3, 100, 15);
+let powerful_monster = new enemy__type("Ведьма", 4, 150, 20);
+let boss = new enemy__type("Уот уьутаакы", 5, 1000, 25);
 
 let k_mas = [weak_monster, average_monster, strong_monster, powerful_monster, boss];
 
@@ -49,7 +48,7 @@ if (kills == 0) {
   let enemy__kills = document.createElement("img");
   let enemy__image = document.getElementById("enemy__image");
   enemy__kills.setAttribute("class", "enemy__png");
-  enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id__jpg"]}.png`);
+  enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id"]}.png`);
   enemy__kills.setAttribute("id", "enemy__image");
   enemy.replaceChild(enemy__kills,enemy__image);
 }
@@ -113,14 +112,19 @@ function attack(health) {
     localStorage.setItem("health", health);
     if (kills == k.length) {
     kills = 0;
-    if (Number(check__levels[0]) < Number(document.getElementById("fight__id").innerHTML) + 1) {
-      check__levels = check__levels.replace(check__levels[0], String(Number(document.getElementById("fight__id").innerHTML) + 1));
-      localStorage.setItem("check__levels", check__levels);
+      if (Number(check__levels[0]) < Number(document.getElementById("fight__id").innerHTML) + 1) {
+        check__levels = check__levels.replace(check__levels[0], String(Number(document.getElementById("fight__id").innerHTML) + 1));
+        localStorage.setItem("check__levels", check__levels);
+      if (check__levels == "6") {
+        alert("конец игры")
+        localStorage.clear()
+        document.location.href = "/";
+      }
     }
     document.location.href = "/map";
   } else {
       enemy__kills.setAttribute("class", "enemy__png");
-      enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]['id__jpg']}.png`);
+      enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]['id']}.png`);
       enemy__kills.setAttribute("id", "enemy__image");
       enemy.replaceChild(enemy__kills,enemy__image);
       enemy__image = enemy__kills;
@@ -227,15 +231,20 @@ function sattack(health) {
       localStorage.setItem("health", health);
       if (kills == k.length) {
       kills = 0;
-      if (Number(check__levels[0]) < Number(document.getElementById("fight__id").innerHTML) + 1) {
-        check__levels = check__levels.replace(check__levels[0], String(Number(document.getElementById("fight__id").innerHTML) + 1));
-        localStorage.setItem("check__levels", check__levels);
-      }
+        if (Number(check__levels[0]) < Number(document.getElementById("fight__id").innerHTML) + 1) {
+          check__levels = check__levels.replace(check__levels[0], String(Number(document.getElementById("fight__id").innerHTML) + 1));
+          localStorage.setItem("check__levels", check__levels);
+        }
+        if (check__levels == "6") {
+          alert("конец игры")
+          localStorage.clear()
+          document.location.href = "/";
+        }
       document.getElementById("fight__id").innerHTML == 1
       document.location.href = "/map";
     } else {
         enemy__kills.setAttribute("class", "enemy__png");
-        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id__jpg"]}.png`);
+        enemy__kills.setAttribute("src", `../static/resources/images/unknown__${k[kills]["id"]}.png`);
         enemy__kills.setAttribute("id", "enemy__image");
         enemy.replaceChild(enemy__kills,enemy__image);
         enemy__image = enemy__kills;
