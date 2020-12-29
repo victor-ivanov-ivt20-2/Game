@@ -8,6 +8,7 @@ button {
   display: inline-block;
   font-size: 72px;
   margin-right: auto;
+  
 }
 button:hover {
   background-color: #ffffff;
